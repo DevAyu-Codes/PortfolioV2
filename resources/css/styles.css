@@ -45,13 +45,21 @@ body {
 /* --- Ultra-Slow Ambient RGB Background --- */
 .rgb-bg-container {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1; filter: blur(120px); opacity: 0.7;
+    z-index: -1; 
+    filter: blur(120px); 
+    opacity: 0.7;
+    /* NEW: Hardware Acceleration */
+    transform: translateZ(0);
+    will-change: filter;
 }
+
 .rgb-gradient {
     width: 100%; height: 100%;
     background: linear-gradient(125deg, #0f172a, #115e59, #312e81, #0f172a);
     background-size: 400% 400%;
-    animation: rgbShift 45s infinite alternate ease-in-out; /* 45 seconds = very slow */
+    animation: rgbShift 45s infinite alternate ease-in-out;
+    /* NEW: Hardware Acceleration */
+    will-change: background-position;
 }
 @keyframes rgbShift {
     0% { background-position: 0% 50%; }
@@ -59,13 +67,16 @@ body {
 }
 
 /* --- Glassmorphism Base --- */
-.glass-card, .glass-nav, .glass-footer {
+.glass-card, .glass-nav, .glass-footer, .contact-section {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* NEW: Hardware Acceleration */
+    transform: translateZ(0);
+    will-change: transform, opacity;
 }
 
 /* --- Navigation --- */
@@ -383,11 +394,23 @@ body {
     .hero-text { text-align: center; }
 }
 @media (max-width: 768px) {
-    .cursor-dot, .cursor-outline { display: none; } /* Disable custom cursor on mobile */
+    .cursor-dot, .cursor-outline { display: none; } 
     * { cursor: auto; }
+    
     .hero h1 { font-size: 2.5rem; }
+    
     .nav-links { display: none; }
     .glass-nav { justify-content: center; }
+
+    /* NEW: Performance Optimization for Mobile GPUs */
+    .rgb-bg-container {
+        filter: blur(60px); /* Halved for performance */
+    }
+    
+    .glass-card, .glass-nav, .glass-footer, .contact-section {
+        backdrop-filter: blur(8px); /* Halved for performance */
+        -webkit-backdrop-filter: blur(8px);
+    }
 }
 @media (max-width: 600px) {
     .typewriter-container {
