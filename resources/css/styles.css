@@ -148,8 +148,18 @@ body {
 }
 
 /* --- Typewriter --- */
-.typewriter-container { margin-bottom: 20px; }
-.typewriter-container h2 { font-size: 1.8rem; color: var(--text-muted); font-weight: 400; }
+.typewriter-container { 
+    margin-bottom: 20px; 
+    min-height: 70px; /* Reserves space so content doesn't jump */
+    display: flex;
+    align-items: center;
+}
+.typewriter-container h2 { 
+    font-size: 1.8rem; 
+    color: var(--text-muted); 
+    font-weight: 400; 
+    margin: 0; /* Prevents margin from messing with the fixed height */
+}
 #typewriter-text { color: var(--primary); font-weight: 600; }
 .type-cursor { animation: blink 0.8s infinite; color: var(--text-main); }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -378,4 +388,13 @@ body {
     .hero h1 { font-size: 2.5rem; }
     .nav-links { display: none; }
     .glass-nav { justify-content: center; }
+}
+@media (max-width: 600px) {
+    .typewriter-container {
+        min-height: 90px; /* Reserves enough space for 2 lines on phones */
+        justify-content: center; /* Keeps it centered */
+    }
+    .typewriter-container h2 {
+        font-size: 1.5rem; /* Shrinks the text just a tiny bit so it fits better */
+    }
 }
