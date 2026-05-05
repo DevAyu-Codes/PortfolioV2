@@ -411,7 +411,7 @@ body {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 900px) {
     .hero-card { 
-        flex-direction: column; text-align: center; padding: 40px 20px; align-items: center; 
+        flex-direction: column; text-align: center; padding: 40px 20px; align-items: center; margin-top: 90px;
     }
     .profile-photo-container {
         width: 180px; height: 180px; margin-bottom: 20px; border-radius: 50%;
