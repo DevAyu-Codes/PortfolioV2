@@ -411,8 +411,8 @@ body {
     /* RESTORED: Lightweight Glass Effect for Mobile */
     .glass-card, .glass-nav, .glass-footer, .contact-section {
         /* A smaller 8px blur looks great but requires 50% less GPU power than desktop */
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
         
         /* Restoring your original semi-transparent glass background */
         background: var(--glass-bg); 
