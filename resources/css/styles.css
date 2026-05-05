@@ -74,8 +74,6 @@ body {
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transform: translateZ(0);
-    /* NEW: Skips rendering cards that are off-screen */
-    content-visibility: auto;
 }
 
 /* --- Navigation --- */
@@ -146,6 +144,27 @@ body {
     color: var(--text-main);
     font-weight: 500;
     margin-left: 5px;
+}
+
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(54, 195, 255, 0.5);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    border: none;
+}
+
+.resume-btn:hover {
+    background: rgba(56, 189, 248, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 144, 206, 0.5);
 }
 
 /* Ensure the grid collapses to one column on smaller phone screens */
@@ -305,11 +324,8 @@ body {
     text-align: center;
     width: 100%;
     margin-top: 30px; 
-    
-    /* THE FIX: Override the performance clipping so the icon can pop out */
     overflow: visible !important;
-    content-visibility: visible !important;
-    contain: none !important;
+    contain: none !important; /* <--- AND THIS ONE */
 }
 
 .share-icon-wrapper {
