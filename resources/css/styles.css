@@ -304,7 +304,12 @@ body {
     padding: 50px 40px 40px;
     text-align: center;
     width: 100%;
-    margin-top: 30px; /* Space for the floating icon */
+    margin-top: 30px; 
+    
+    /* THE FIX: Override the performance clipping so the icon can pop out */
+    overflow: visible !important;
+    content-visibility: visible !important;
+    contain: none !important;
 }
 
 .share-icon-wrapper {
@@ -353,7 +358,7 @@ body {
 
 /* Brand Hover Colors for Social Card */
 .social-icon.instagram:hover { background: #E1306C; transform: translateY(-5px); }
-.social-icon.whatsapp:hover { background: #25D366; transform: translateY(-5px); }
+.social-icon.whatsapp:hover { background: #e91e1e; transform: translateY(-5px); }
 .social-icon.linkedin:hover { background: #0077b5; transform: translateY(-5px); }
 .social-icon.github:hover { background: #333; transform: translateY(-5px); }
 
@@ -411,8 +416,8 @@ body {
     /* RESTORED: Lightweight Glass Effect for Mobile */
     .glass-card, .glass-nav, .glass-footer, .contact-section {
         /* A smaller 8px blur looks great but requires 50% less GPU power than desktop */
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
         
         /* Restoring your original semi-transparent glass background */
         background: var(--glass-bg); 
