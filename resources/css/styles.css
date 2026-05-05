@@ -43,14 +43,13 @@ body {
 }
 
 /* --- Ultra-Slow Ambient RGB Background --- */
+/* --- Ultra-Slow Ambient RGB Background --- */
 .rgb-bg-container {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -1; 
-    filter: blur(120px); 
     opacity: 0.7;
-    /* NEW: Hardware Acceleration */
+    /* REMOVED: filter: blur(). This was killing the GPU for no visual benefit! */
     transform: translateZ(0);
-    will-change: filter;
 }
 
 .rgb-gradient {
@@ -390,26 +389,33 @@ body {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 900px) {
-    .hero-card { flex-direction: column; text-align: center; padding: 40px; padding-top: 100px;}
+    .hero-card { 
+        flex-direction: column; text-align: center; padding: 40px 20px; align-items: center; 
+    }
+    .profile-photo-container {
+        width: 180px; height: 180px; margin-bottom: 20px; border-radius: 50%;
+    }
     .hero-text { text-align: center; }
+    .social-links-hero { display: flex; justify-content: center; }
+    .personal-info-grid { grid-template-columns: 1fr; gap: 12px; text-align: left; }
 }
+
 @media (max-width: 768px) {
     .cursor-dot, .cursor-outline { display: none; } 
     * { cursor: auto; }
     
     .hero h1 { font-size: 2.5rem; }
-    
     .nav-links { display: none; }
     .glass-nav { justify-content: center; }
 
-    /* NEW: Performance Optimization for Mobile GPUs */
-    .rgb-bg-container {
-        filter: blur(60px); /* Halved for performance */
-    }
-    
+    /* THE ULTIMATE LAG KILLER FOR OLDER PHONES */
+    /* Turn off the heavy blur calculations and use a sleek solid color */
     .glass-card, .glass-nav, .glass-footer, .contact-section {
-        backdrop-filter: blur(8px); /* Halved for performance */
-        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        /* A dark, slightly translucent slate color to mimic the glass vibe without the math */
+        background: rgba(15, 23, 42, 0.95); 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
 }
 @media (max-width: 600px) {
